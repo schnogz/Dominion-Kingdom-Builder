@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center" style="margin-top: -15px; font-family: 'Righteous', cursive;">Browse Cards</h1>
+
+        </div>
+    </div>
+    <nav class="navbar navbar-inner" role="navigation">
+
+        <div class="col-md-10" style="margin-top: 5px; padding-left: 0px; padding-right: 0px">
+            <ul class="nav nav-pills">
+                <!--<li><a href="">All Sets</a></li>-->
+                <li ng-class="{'active': page === 'base'}"><a href="#/browse/base/{{cardView}}">Base</a></li>
+                <li ng-class="{'active': page === 'intrigue'}"><a href="#/browse/intrigue/{{cardView}}">Intrigue</a></li>
+                <li ng-class="{'active': page === 'alchemy'}"><a href="#/browse/alchemy/{{cardView}}">Alchemy</a></li>
+                <li ng-class="{'active': page === 'seaside'}"><a href="#/browse/seaside/{{cardView}}">Seaside</a></li>
+                <li ng-class="{'active': page === 'prosperity'}"><a href="#/browse/prosperity/{{cardView}}">Prosperity</a></li>
+                <li ng-class="{'active': page === 'cornucopia'}"><a href="#/browse/cornucopia/{{cardView}}">Cornucopia</a></li>
+                <li ng-class="{'active': page === 'hinterlands'}"><a href="#/browse/hinterlands/{{cardView}}">Hinterlands</a></li>
+                <li ng-class="{'active': page === 'darkAges'}"><a href="#/browse/darkAges/{{cardView}}">Dark Ages</a></li>
+                <li ng-class="{'active': page === 'guilds'}"><a href="#/browse/guilds/{{cardView}}">Guilds</a></li>
+                <li ng-class="{'active': page === 'promo'}"><a href="#/browse/promo/{{cardView}}">Promo</a></li>
+                <li ng-class="{'active': page === 'common'}"><a href="#/browse/common/{{cardView}}">Common</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2" style="padding:0px; margin-top: 7px;">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" ng-class="{'active': cardView === 'card'}" ng-click="cardView = 'card'">
+                    <span class="glyphicon glyphicon-th-large"></span> Cards
+                </button>
+                <button type="button" class="btn btn-default" ng-class="{'active': cardView === 'list'}" ng-click="cardView = 'list'">
+                    <span class="glyphicon glyphicon-list"></span> Details
+                </button>
+            </div>
+        </div>
+
+        </nav>
+</div>
+<div class="container" style="margin-top:20px;">
+    <div class="row" ng-show="cardView === 'card'">
+        <div class="col-xs-18 col-sm-6 col-md-3" ng-repeat="card in cards[page]">
+            <div class="thumbnail">
+                <img ng-src="{{card.imgUrl}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive text-center well" ng-show="cardView === 'list'">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center h4">Name</th>
+                    <th class="text-center h4">Image</th>
+                    <th class="text-center h4">Set</th>
+                    <th class="text-center h4">Cost</th>
+                    <th class="text-center h4">Type</th>
+                    <th class="text-center h4">Plus Cards</th>
+                    <th class="text-center h4">Plus Actions</th>
+                    <th class="text-center h4">Plus Buys</th>
+                    <th class="text-center h4">Plus Gold</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="card in cards[page]">
+                    <td class="vert-align h4">{{ card.name }}</td>
+                    <td class="center-block">
+                        <a href="{{card.imgUrl}}" target="_blank">
+                        <img ng-src="{{card.imgUrl}}" width="40px" height="70px">
+                        </a>
+                    </td>
+                    <td class="vert-align">{{ card.set }}</td>
+                    <td class="vert-align">{{ card.cost }} Gold<span ng-if="card.potionCost">, {{ card.potionCost }} Potion<span></span></td>
+                    <td class="vert-align">{{ card.type }}</td>
+                    <td class="vert-align">{{ card.plusCards }}</td>
+                    <td class="vert-align">{{ card.plusActions }}</td>
+                    <td class="vert-align">{{ card.plusBuys }}</td>
+                    <td class="vert-align">{{ card.plusGold }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <!--
+        <div class="col-xs-18 col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="http://placehold.it/500x250/EEE">
+                <div class="caption">
+                    <h4>Thumbnail label</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
+                    <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                </div>
+            </div>
+        </div>
+        -->
+</div>
